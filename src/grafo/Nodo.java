@@ -9,7 +9,7 @@ public class Nodo {
 	public double dist;
 	public Nodo prev;
 	
-	public Nodo(String nm) {
+	public Nodo(String nm)   {
 		name = nm;
 		adjacente = new LinkedList<Arista>();
 		reset();
@@ -17,6 +17,6 @@ public class Nodo {
 	}
 	
 	public void reset() {
-		dist = Grafo.INFINITY;
+		dist = Double.MAX_VALUE;
 	}
 }
