@@ -2,9 +2,9 @@ package grafo;
 
 public class Arista {
 	public Nodo destino;
-	public double costo;
+	public int costo;
 	
-	public Arista( Nodo d, double c) {
+	public Arista( Nodo d, int c) {
 		destino = d;
 		costo = c;
 	}

@@ -3,10 +3,10 @@ package grafo;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Nodo {
+public class Nodo implements Comparable<Nodo> {
 	public String name;
 	public List<Arista> adjacente;
-	public double dist;
+	public int dist;
 	public Nodo prev;
 	
 	public Nodo(String nm)   {
@@ -16,7 +16,11 @@ public class Nodo {
 		
 	}
 	
+	public int compareTo(Nodo other) {
+	    return Integer.compare(this.dist, other.dist);
+	}
+	
 	public void reset() {
-		dist = Double.MAX_VALUE;
+		dist = -1;
 	}
 }
