@@ -19,13 +19,14 @@ public class Main {
 			System.out.println("1- Buscar nodo(de no ser encontrado se creara un nodo nuevo)");
 			System.out.println("0- Salir");
 			opc = s.nextInt();
+			s.nextLine();
 			if(opc==1) {
 				System.out.println("Nombre del nodo a buscar/crear");
-
 				String n = s.nextLine();
 				grafo.getNodo(n);
 			}
 			
+			grafo.seeGraph();
 			
 		}while(opc != 0);
 		System.out.println("Adios!");

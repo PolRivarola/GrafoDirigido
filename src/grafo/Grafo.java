@@ -38,6 +38,16 @@ public class Grafo {
 		
 	}
 	
+	public void seeGraph() {
+		if(NodoMap != null) {
+			for(Map.Entry<String, Nodo> entry : NodoMap.entrySet()) {
+				System.out.println("Vertice: " + entry.getKey());
+			}
+		} else {
+			System.out.println("No existen vertices ni aristas en este nodo");
+		}
+	}
+	
 	public void agregarArista(String nomOri, String nomDest, double cost) {
 		Nodo v = getNodo(nomOri);
 		Nodo w = getNodo(nomDest);
