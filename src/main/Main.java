@@ -42,9 +42,9 @@ public class Main {
 		grafo.addNodo(nodos[12], nodos[1], 200);
 
 		grafo.seeGraph();
-		grafo.dijkstra("d12", "d5");
+		grafo.dijkstra("d9", "d5");
 
-		grafo.BFS("d12","d5");
+		grafo.BFS("d9","d5");
 	
 		
 		

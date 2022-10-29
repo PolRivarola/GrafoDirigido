@@ -24,12 +24,12 @@ public class Grafo   {
 		if(n == null) {
 			n = new Nodo(NodoName);
 			NodoMap.put(NodoName,n);
-			System.out.println("Nodo"+ NodoName +" no encontrado... nuevo nodo creado");
+			System.out.println("Nodo: "+ NodoName +" no encontrado... nuevo nodo creado");
 		}
 		if(m == null) {
 			n = new Nodo(NodoName2);
 			NodoMap.put(NodoName2,n);
-			System.out.println("Nodo"+ NodoName2 +" no encontrado... nuevo nodo creado");
+			System.out.println("Nodo: "+ NodoName2 +" no encontrado... nuevo nodo creado");
 		}	
 		agregarArista(NodoName, NodoName2, cost);
 		
