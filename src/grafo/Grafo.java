@@ -19,24 +19,19 @@ public class Grafo {
 			if(NodoMap.size() != 1) {
 			System.out.println("Hacia que nodo apunta este nuevo nodo?");
 			String nodoDest = s.nextLine();
-			while(nodoExist(nodoDest) != true) {
+			do {
 				System.out.println("Cual es el costo de esta arista?");
 				double cost = s.nextInt();
 				agregarArista(NodoName, nodoDest, cost);
-			}}
+			}while(NodoMap.get(nodoDest) == null);
+				
+			}
 		}
 		return n;
 	}
 	
-	public boolean nodoExist(String name) {
-		Nodo nodo = NodoMap.get(name);
-		if(nodo == null) {
-			System.out.println("Este nodo no existe, intentelo de nuevo");
-			return false;
-		}
-		return true;
-		
-	}
+
+	
 	
 	public void seeGraph() {
 		if(NodoMap != null) {
