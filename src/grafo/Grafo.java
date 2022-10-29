@@ -37,6 +37,9 @@ public class Grafo {
 		if(NodoMap != null) {
 			for(Map.Entry<String, Nodo> entry : NodoMap.entrySet()) {
 				System.out.println("Vertice: " + entry.getKey());
+				for (Arista e : entry.getValue().adjacente) {
+					System.out.println("  -Apunta a: "+ e.destino.name + "(" + e.costo +")");
+				}
 			}
 		} else {
 			System.out.println("No existen vertices ni aristas en este nodo");
