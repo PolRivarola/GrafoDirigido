@@ -1,5 +1,8 @@
 package arbol;
 
+import grafo.Arista;
+import grafo.Nodo;
+
 public class BinaryTree {
 private static Node root;
 	
@@ -19,7 +22,7 @@ private static Node root;
 	}
 	
 	public void add(int value) {
-		setRoot(addRecursive(getRoot(), value));
+		root = addRecursive(root, value);
 	}
 	
 	public static boolean containsNodeRecursive(Node current, int value) {
@@ -32,34 +35,38 @@ private static Node root;
 	}
 	
 	public static boolean containsNode(int value) {
-		return containsNodeRecursive(getRoot(), value);
+		return containsNodeRecursive(root, value);
 	}
 	
-	private static Node deleteRecursive(Node current, int value) {
-		if(containsNode(value) == true){
-			current = null;
-			return current;
-		}
-		
+	private Node deleteRecursive(Node current, int value) {
+	    if (current == null) {
+	        return null;
+	    }
+
+	    if (value == current.value) {
+	    	if (current.left == null && current.right == null) {
+	    	    return null;
+	    	}
+	    	
+	    	if (current.right == null) {
+	    	    return current.left;
+	    	}
+
+	    	if (current.left == null) {
+	    	    return current.right;
+	    	}
+	    	
+	    	int smallestValue = findSmallestValue(current.right);
+	    	current.value = smallestValue;
+	    	current.right = deleteRecursive(current.right, smallestValue);
+	    	return current;
+	    } 
 	    if (value < current.value) {
 	        current.left = deleteRecursive(current.left, value);
 	        return current;
 	    }
-	    if (current.left == null && current.right == null) {
-	        return null;
-	    }
-	    if (current.right == null) {
-	        return current.left;
-	    }
-
-	    if (current.left == null) {
-	        return current.right;
-	    }
-	    int smallestValue = findSmallestValue(current.right);
-	    current.value = smallestValue;
-	    current.right = deleteRecursive(current.right, smallestValue);
+	    current.right = deleteRecursive(current.right, value);
 	    return current;
-	   
 	}
 	
 	private static int findSmallestValue(Node root) {
@@ -67,7 +74,7 @@ private static Node root;
 	}
 	
 	public void delete(int value) {
-	    deleteRecursive(getRoot(), value);
+	    root = deleteRecursive(root, value);
 	}
 	
 	public void traverseInOrder(Node node) {
@@ -95,6 +102,7 @@ private static Node root;
 	}
 	
 
+	
 
 	public static Node getRoot() {
 		return root;

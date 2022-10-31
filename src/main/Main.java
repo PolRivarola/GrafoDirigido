@@ -48,8 +48,9 @@ public class Main {
 		grafo.dijkstra("d9", "d5");
 
 		grafo.BFS("d9","d5");
-	
 		
+		
+		grafo.searchGraphs();
 		BinaryTree btn = new BinaryTree();
 		
 	    btn.add(6);
@@ -69,6 +70,7 @@ public class Main {
 			System.out.println("Oprima [4] si desea eliminar un nodo");
 			
 			int opc = sc.nextInt();
+			sc.nextLine();
 			switch(opc) {
 			case 1:
 				btn.traversePreOrder(BinaryTree.getRoot());
@@ -88,6 +90,10 @@ public class Main {
 		}
 		
 		
+		
+			 
 	}
+ 
+	 
 }
 }

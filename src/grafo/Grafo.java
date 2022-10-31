@@ -1,7 +1,9 @@
 package grafo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
@@ -36,6 +38,16 @@ public class Grafo   {
 			
 	}
 
+	
+	
+	public void searchGraphs() {
+		for (Nodo value1 : NodoMap.values()) {
+			for (Nodo value2 : NodoMap.values()) {
+			    printAllPaths(value1, value2);
+			}
+			clearAll();
+		}
+	}
 	
 	
 	public void seeGraph() {
@@ -118,7 +130,91 @@ public class Grafo   {
 	private void clearAll() {
 		for (Entry<String, Nodo> e : NodoMap.entrySet()) {
 			e.getValue().dist = -1;
-		}  
+			e.getValue().setVisited(false);
+			}  
+	}
+	
+	// Prints all paths from
+    // 's' to 'd'
+    public void printAllPaths(Nodo s, Nodo d)
+    {
+        ArrayList<String> pathList = new ArrayList<>();
+ 
+        // add source to path[]
+        pathList.add(s.name);
+ 
+        // Call recursive utility
+        printAllPathsUtil(s, d, pathList);
+    }
+ 
+    // A recursive function to print
+    // all paths from 'u' to 'd'.
+    // isVisited[] keeps track of
+    // vertices in current path.
+    // localPathList<> stores actual
+    // vertices in the current path
+    private void printAllPathsUtil(Nodo u, Nodo d,
+                                   
+                                   List<String> localPathList)
+    {
+ 
+        if (u.equals(d)) {
+            System.out.println(localPathList);
+            // if match found then no need to traverse more till depth
+            return;
+        }
+ 
+        // Mark the current node
+        u.setVisited(true); 
+ 
+        // Recur for all the vertices
+        // adjacent to current vertex
+        for (Arista i : u.adjacente) {
+            if (!i.destino.isVisited()) {
+                // store current node
+                // in path[]
+                localPathList.add(i.destino.name);
+                printAllPathsUtil(i.destino, d, localPathList);
+ 
+                // remove current node
+                // in path[]
+                localPathList.remove(i.destino.name);
+            }
+        }
+ 
+        // Mark the current node
+        u.setVisited(true);
+    }
+	
+	
+	public boolean hasCycle(Nodo sourceNodo) {
+		
+	    sourceNodo.setBeingVisited(true);
+	    sourceNodo.filaNoC.add(sourceNodo.name);
+
+	    for (Arista neighbor : sourceNodo.adjacente) {
+	        if (neighbor.destino.isBeingVisited()) {
+	        	
+	        	sourceNodo.filaNoC.forEach(System.out::print);;
+	        	System.out.print(" ");
+	        	
+	        	sourceNodo.filaNoC.clear();;
+	        
+
+	            return true;
+	        } else if (!neighbor.destino.isVisited() && hasCycle(neighbor.destino)) {
+	        
+	        	sourceNodo.filaNoC.forEach(System.out::print);;
+	        	System.out.print(" ");
+	        	sourceNodo.filaNoC.clear();;
+	        	return true;
+	        }
+	    }
+
+	    sourceNodo.setBeingVisited(false);
+	    sourceNodo.setVisited(true);
+	    System.out.println();
+	    return false;
 	}
 	
 	public void agregarArista(String nomOri, String nomDest, int cost) {
