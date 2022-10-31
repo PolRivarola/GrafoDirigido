@@ -1,4 +1,7 @@
 package main;
+import java.util.Scanner;
+
+import arbol.BinaryTree;
 import grafo.*;
 
 
@@ -6,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		
+		Scanner sc = new Scanner(System.in);
 		Grafo grafo = new Grafo();
 		String[] nodos = {"d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","d11","d12","d13"};
 		
@@ -47,6 +50,44 @@ public class Main {
 		grafo.BFS("d9","d5");
 	
 		
+		BinaryTree btn = new BinaryTree();
+		
+	    btn.add(6);
+	    btn.add(4);
+	    btn.add(8);
+	    btn.add(3);
+	    btn.add(5);
+	    btn.add(7);
+	    btn.add(9);
+	    
+	    
+	    
+	    while(true) {
+			System.out.println("Oprima [1] si desea recorrer el arbol en PreOrder");
+			System.out.println("Oprima [2] si desea recorrer el arbol en InOrder");
+			System.out.println("Oprima [3] si desea recorrer el arbol en PostOrder");
+			System.out.println("Oprima [4] si desea eliminar un nodo");
+			
+			int opc = sc.nextInt();
+			switch(opc) {
+			case 1:
+				btn.traversePreOrder(BinaryTree.getRoot());
+				break;
+			case 2:
+				btn.traverseInOrder(BinaryTree.getRoot());
+				break;
+			case 3:
+				btn.traversePostOrder(BinaryTree.getRoot());
+				break;
+			case 4:
+				System.out.println("Que nodo desea eliminar?");
+				int chc = sc.nextInt();
+				btn.delete(chc);
+				System.out.println("Nodo eliminado");
+				break;
+		}
+		
 		
 	}
+}
 }
