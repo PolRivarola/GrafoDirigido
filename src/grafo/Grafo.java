@@ -1,13 +1,14 @@
 package grafo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.Stack;
 
 public class Grafo {
 
@@ -41,7 +42,7 @@ public class Grafo {
 			for (Nodo value2 : NodoMap.values()) {
 				clearAll();
 				if (value2 != value1) {
-					printAllPaths(value1, value2);
+					AllPaths(value1, value2);
 				}
 
 			}
@@ -112,7 +113,30 @@ public class Grafo {
 			System.out.println("No hay camino entre estos nodos");
 	}
 
-	
+	 private Stack<String> path  = new Stack<String>();  
+	    private Set<String> onPath  = new HashSet<String>();    
+	    public void AllPaths(Nodo G, Nodo T) {
+	        enumerate(G,T);
+	    }
+
+	    // use DFS
+	    public void enumerate(Nodo G, Nodo T) {
+
+	        path.push(G.name);
+	        onPath.add(G.name);
+
+	        if (G.name.equals(T.name))
+	            System.out.println(path);
+
+	        else {
+	            for (Arista w : G.adjacente) {
+	                if (!onPath.contains(w.destiny.name)) enumerate(w.destiny,T);
+	            }
+	        }
+
+	        path.pop();
+	        onPath.remove(G.name);
+	    }
 	
 	
 	public void BFS() {
@@ -163,38 +187,7 @@ public class Grafo {
 	private void clearAll() {
 		for (Entry<String, Nodo> e : NodoMap.entrySet()) {
 			e.getValue().dist = -1;
-			e.getValue().setVisited(false);
 		}
-	}
-
-	public void printAllPaths(Nodo s, Nodo d) {
-		ArrayList<String> pathList = new ArrayList<>();
-
-		pathList.add(s.name);
-
-		printCaminosUtil(s, d, pathList);
-	}
-
-	private void printCaminosUtil(Nodo u, Nodo d, List<String> localPathList) {
-
-		if (u.equals(d)) {
-			System.out.println(localPathList);
-			return;
-		}
-
-		u.setVisited(true);
-
-		for (Arista i : u.adjacente) {
-			if (!i.destiny.isVisited()) {
-
-				localPathList.add(i.destiny.name);
-				printCaminosUtil(i.destiny, d, localPathList);
-
-				localPathList.remove(i.destiny.name);
-			}
-		}
-
-		u.setVisited(true);
 	}
 
 

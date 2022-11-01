@@ -82,6 +82,7 @@ public class Main {
 						grafo.searchGraphs();
 						break;
 					case 0:
+						
 						System.out.println("Saliendo..");
 						break;
 					default:
@@ -147,6 +148,7 @@ public class Main {
 				break;
 
 			case 0:
+			
 				System.out.println("Saliendo...");
 				break;
 			default:

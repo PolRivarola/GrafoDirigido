@@ -9,7 +9,6 @@ public class Nodo implements Comparable<Nodo> {
 	public List<String> filaNoC;
 	public int dist;
 	public Nodo prev;
-	private boolean visited;
 
 	public Nodo(String nm) {
 		name = nm;
@@ -27,12 +26,5 @@ public class Nodo implements Comparable<Nodo> {
 		dist = -1;
 	}
 
-	
-	public boolean isVisited() {
-		return visited;
-	}
 
-	public void setVisited(boolean visited) {
-		this.visited = visited;
-	}
 }
