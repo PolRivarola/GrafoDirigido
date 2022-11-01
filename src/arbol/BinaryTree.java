@@ -24,10 +24,15 @@ public class BinaryTree {
 
 	private Node deleteRecursive(Node current, int value) {
 		if (current == null) {
+			System.out.println("Nodo no encontrado");
 			return null;
+		
+
 		}
 
 		if (value == current.value) {
+			System.out.println("Nodo eliminado");
+
 			if (current.left == null && current.right == null) {
 				return null;
 			}
