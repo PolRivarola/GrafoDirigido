@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Grafo {
 
 	private Map<String, Nodo> NodoMap = new HashMap<String, Nodo>();
-
+	Scanner sc = new Scanner(System.in);
+	
 	public Nodo getNodo(String NodoName) {
 		Nodo n = NodoMap.get(NodoName);
 		return n;
@@ -59,11 +61,26 @@ public class Grafo {
 		}
 	}
 
-	public void dijkstra(String startName, String destino) {
+	public void dijkstra() {
+		Nodo start = null;
+		Nodo end = null;
+		String startName = "";
+		String destino = "";
+		
 		clearAll();
-		Nodo start = NodoMap.get(startName);
-		Nodo end = NodoMap.get(destino);
-
+		
+		while(start == null || end == null) {
+			System.out.println("Ingrese primer nodo");
+			startName = sc.nextLine();
+			System.out.println("Ingrese segundo nodo");
+			destino = sc.nextLine();
+			start = NodoMap.get(startName);
+			end = NodoMap.get(destino);
+			if(start == null || end == null) {
+				 System.out.println("Ingrese nodos existentes porfavor!");
+				 
+			}
+		}
 		start.dist = 0;
 
 		Queue<Nodo> pq = new LinkedList<Nodo>();
@@ -95,15 +112,32 @@ public class Grafo {
 			System.out.println("No hay camino entre estos nodos");
 	}
 
-	public void BFS(String startName, String destino) {
+	
+	
+	
+	public void BFS() {
+		Nodo start = null;
+		Nodo end = null;
+		String startName = "";
+		String destino = "";
+		
 		clearAll();
-		Nodo start = NodoMap.get(startName);
-		Nodo end = NodoMap.get(destino);
-
-		if(start == null || end == null) {
-			 System.out.println("Ingrese nodos existentes porfavor!");
-			 return;
+		
+		while(start == null || end == null) {
+			System.out.println("Ingrese primer nodo");
+			startName = sc.nextLine();
+			System.out.println("Ingrese segundo nodo");
+			destino = sc.nextLine();
+			start = NodoMap.get(startName);
+			end = NodoMap.get(destino);
+			if(start == null || end == null) {
+				 System.out.println("Ingrese nodos existentes porfavor!");
+				 
+			}
 		}
+		
+
+		
 		Queue<Nodo> q = new LinkedList<Nodo>();
 		q.add(start);
 		start.dist = 0;

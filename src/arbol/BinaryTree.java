@@ -5,6 +5,7 @@ public class BinaryTree {
 
 	private Node addRecursive(Node current, int value) {
 		if (current == null) {
+			System.out.println("Nuevo nodo creado con exito!");
 			return new Node(value);
 		}
 
@@ -15,11 +16,13 @@ public class BinaryTree {
 		} else {
 			return current;
 		}
+		
 		return current;
 	}
 
 	public void add(int value) {
 		root = addRecursive(root, value);
+		
 	}
 
 	private Node deleteRecursive(Node current, int value) {

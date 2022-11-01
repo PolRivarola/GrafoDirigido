@@ -15,9 +15,9 @@ public class Main {
 		int opc, opcTree = -1;
 
 		do {
-			System.out.println("Oprima [1] si desea crear el grafo\r\n" + "");
-			System.out.println("Oprima [2] si desea crear el arbol\r\n" + "");
-			System.out.println("Oprima [0] si desea salir\r\n" + "");
+			System.out.println("1- Crear el grafo\r\n" + "");
+			System.out.println("2- Crear el arbol\r\n" + "");
+			System.out.println("0- Salir\r\n" + "");
 			System.out.println("Ingrese opción:");
 			opc = sc.nextInt();
 			sc.nextLine();
@@ -53,47 +53,46 @@ public class Main {
 				grafo.addNodo(nodos[11], nodos[1], 150);
 				grafo.addNodo(nodos[12], nodos[11], 100);
 				grafo.addNodo(nodos[12], nodos[1], 200);
-				
-				System.out.println("Oprima [1] si desea mostrar el grafo\r\n" + "");
-				System.out.println("Oprima [2] si desea calcular camino minimo sin pesos entre los nodos \"d9\" y \"d5\"\r\n" + "");
-				System.out.println("Oprima [2] si desea calcular camino minimo ponderado entre los nodos \"d9\" y \"d5\" \r\n" + "");
-				System.out.println("Oprima [3] si desea calcular los grafos acíclicos del grafo\r\n" + "");
-				System.out.println("Oprima [0] si desea salir\r\n" + "");
-				System.out.println("Ingrese opción:");
-				int opcGraph = -1;
-				
-				do {
-				
-				opcGraph = sc.nextInt();
-				sc.nextLine();
-				switch(opcGraph) {
-				case 1:
-					grafo.seeGraph();
-					break;
-				case 2:
-					grafo.BFS("d9", "d5");
-					break;
-				case 3:
-					grafo.dijkstra("d9", "d5");
-					break;
-				case 4:
-					System.out.println();
-					System.out.println("Esta es una lista de grafos aciclicos contenidos en este grafo");
 
-					grafo.searchGraphs();
-					break;
-				default: 
-					System.out.println("Ingrese una opcion válida");
-					break;
-				}
-				}while(opcGraph != 0);
+				int opcGraph = -1;
+
+				do {
+					System.out.println("1- Mostrar el grafo\r\n" + "");
+					System.out.println("2- Calcular camino minimo sin pesos entre los nodos \"d9\" y \"d5\"\r\n" + "");
+					System.out.println("3- Calcular camino minimo ponderado entre los nodos \"d9\" y \"d5\" \r\n" + "");
+					System.out.println("4- Calcular los grafos acíclicos del grafo\r\n" + "");
+					System.out.println("0- Salir\r\n" + "");
+					System.out.println("Ingrese opción:");
+					opcGraph = sc.nextInt();
+					sc.nextLine();
+					switch (opcGraph) {
+					case 1:
+						grafo.seeGraph();
+						break;
+					case 2:
+						grafo.BFS();
+						break;
+					case 3:
+						grafo.dijkstra();
+						break;
+					case 4:
+						System.out.println();
+						System.out.println("Esta es una lista de grafos aciclicos contenidos en este grafo");
+
+						grafo.searchGraphs();
+						break;
+					case 0:
+						System.out.println("Saliendo..");
+						break;
+					default:
+						System.out.println("Ingrese una opcion válida");
+						break;
+					}
+				} while (opcGraph != 0);
 				break;
-				
-				
-				
 
 			case 2:
-				
+
 				BinaryTree btn = new BinaryTree();
 
 				btn.add(6);
@@ -105,11 +104,12 @@ public class Main {
 				btn.add(9);
 
 				do {
-					System.out.println("Oprima [1] si desea recorrer el arbol en PreOrder");
-					System.out.println("Oprima [2] si desea recorrer el arbol en InOrder");
-					System.out.println("Oprima [3] si desea recorrer el arbol en PostOrder");
-					System.out.println("Oprima [4] si desea eliminar un nodo");
-					System.out.println("Oprima [0] si desea salir\r\n" + "");
+					System.out.println("1- Recorrer el arbol en PreOrder");
+					System.out.println("2- Recorrer el arbol en InOrder");
+					System.out.println("3- Recorrer el arbol en PostOrder");
+					System.out.println("4- Agregar un nodo");
+					System.out.println("5- Eliminar un nodo");
+					System.out.println("0- Salir\r\n" + "");
 
 					opcTree = sc.nextInt();
 					sc.nextLine();
@@ -124,17 +124,35 @@ public class Main {
 						btn.traversePostOrder(BinaryTree.getRoot());
 						break;
 					case 4:
+						System.out.println("En caso de ingresar nodos preexistentes no se generaran cambios...");
+						System.out.println("Ingrese nodo a agregar:");
+						int value = sc.nextInt();
+						sc.nextLine();
+						btn.add(value);
+						break;
+					case 5:
 						System.out.println("Que nodo desea eliminar?");
 						int chc = sc.nextInt();
 						btn.delete(chc);
 						break;
+					case 0:
+						System.out.println("Saliendo...");
+						break;
+					default:
+						System.out.println("Ingrese una opcion válida");
+						break;
 					}
-					
-					
-				} while (opcTree != 0);
 
+				} while (opcTree != 0);
+				break;
+
+			case 0:
+				System.out.println("Saliendo...");
+				break;
+			default:
+				System.out.println("Ingrese una opcion válida");
+				break;
 			}
-			break;
 
 		} while (opc != 0);
 
