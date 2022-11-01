@@ -1,11 +1,11 @@
 package grafo;
 
 public class Arista {
-	public Nodo destino;
-	public int costo;
+	public Nodo destiny;
+	public int cost;
 	
 	public Arista( Nodo d, int c) {
-		destino = d;
-		costo = c;
+		destiny = d;
+		cost = c;
 	}
 }

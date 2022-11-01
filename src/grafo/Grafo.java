@@ -51,7 +51,7 @@ public class Grafo {
 			for (Map.Entry<String, Nodo> entry : NodoMap.entrySet()) {
 				System.out.println("Nodo: " + entry.getKey());
 				for (Arista e : entry.getValue().adjacente) {
-					System.out.println("  -Apunta a: " + e.destino.name + "(" + e.costo + ")");
+					System.out.println("  -Apunta a: " + e.destiny.name + "(" + e.cost + ")");
 				}
 			}
 		} else {
@@ -72,8 +72,8 @@ public class Grafo {
 		while (!pq.isEmpty()) {
 			Nodo v = pq.remove();
 			for (Arista e : v.adjacente) {
-				Nodo w = e.destino;
-				int cVW = e.costo;
+				Nodo w = e.destiny;
+				int cVW = e.cost;
 
 				if (w.dist == -1) {
 
@@ -108,7 +108,7 @@ public class Grafo {
 			Nodo v = q.remove();
 
 			for (Arista e : v.adjacente) {
-				Nodo w = e.destino;
+				Nodo w = e.destiny;
 				if (w.dist == -1) {
 					w.dist = v.dist + 1;
 					w.prev = v;
@@ -147,12 +147,12 @@ public class Grafo {
 		u.setVisited(true);
 
 		for (Arista i : u.adjacente) {
-			if (!i.destino.isVisited()) {
+			if (!i.destiny.isVisited()) {
 
-				localPathList.add(i.destino.name);
-				printCaminosUtil(i.destino, d, localPathList);
+				localPathList.add(i.destiny.name);
+				printCaminosUtil(i.destiny, d, localPathList);
 
-				localPathList.remove(i.destino.name);
+				localPathList.remove(i.destiny.name);
 			}
 		}
 
