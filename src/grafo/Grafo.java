@@ -100,6 +100,10 @@ public class Grafo {
 		Nodo start = NodoMap.get(startName);
 		Nodo end = NodoMap.get(destino);
 
+		if(start == null || end == null) {
+			 System.out.println("Ingrese nodos existentes porfavor!");
+			 return;
+		}
 		Queue<Nodo> q = new LinkedList<Nodo>();
 		q.add(start);
 		start.dist = 0;

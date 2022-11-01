@@ -90,7 +90,7 @@ public class BinaryTree {
 		}
 	}
 
-	public static Node getRoot() {
+	public static Node getRoot() { 
 		return root;
 	}
 }
