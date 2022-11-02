@@ -58,8 +58,8 @@ public class Main {
 
 				do {
 					System.out.println("1- Mostrar el grafo\r\n" + "");
-					System.out.println("2- Calcular camino minimo sin pesos entre los nodos \"d9\" y \"d5\"\r\n" + "");
-					System.out.println("3- Calcular camino minimo ponderado entre los nodos \"d9\" y \"d5\" \r\n" + "");
+					System.out.println("2- Calcular camino minimo sin pesos entre dos nodos\r\n" + "");
+					System.out.println("3- Calcular camino minimo ponderado entre dos nodos\r\n" + "");
 					System.out.println("4- Calcular los grafos acíclicos del grafo\r\n" + "");
 					System.out.println("0- Salir\r\n" + "");
 					System.out.println("Ingrese opción:");

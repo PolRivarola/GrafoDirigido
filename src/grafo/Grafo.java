@@ -13,8 +13,10 @@ import java.util.Stack;
 public class Grafo {
 
 	private Map<String, Nodo> NodoMap = new HashMap<String, Nodo>();
+	private Stack<String> path = new Stack<String>();
+	private Set<String> onPath = new HashSet<String>();
 	Scanner sc = new Scanner(System.in);
-	
+
 	public Nodo getNodo(String NodoName) {
 		Nodo n = NodoMap.get(NodoName);
 		return n;
@@ -40,7 +42,6 @@ public class Grafo {
 	public void searchGraphs() {
 		for (Nodo value1 : NodoMap.values()) {
 			for (Nodo value2 : NodoMap.values()) {
-				clearAll();
 				if (value2 != value1) {
 					AllPaths(value1, value2);
 				}
@@ -67,19 +68,19 @@ public class Grafo {
 		Nodo end = null;
 		String startName = "";
 		String destino = "";
-		
+
 		clearAll();
-		
-		while(start == null || end == null) {
+
+		while (start == null || end == null) {
 			System.out.println("Ingrese primer nodo");
 			startName = sc.nextLine();
 			System.out.println("Ingrese segundo nodo");
 			destino = sc.nextLine();
 			start = NodoMap.get(startName);
 			end = NodoMap.get(destino);
-			if(start == null || end == null) {
-				 System.out.println("Ingrese nodos existentes porfavor!");
-				 
+			if (start == null || end == null) {
+				System.out.println("Ingrese nodos existentes porfavor!");
+
 			}
 		}
 		start.dist = 0;
@@ -113,55 +114,50 @@ public class Grafo {
 			System.out.println("No hay camino entre estos nodos");
 	}
 
-	 private Stack<String> path  = new Stack<String>();  
-	    private Set<String> onPath  = new HashSet<String>();    
-	    public void AllPaths(Nodo G, Nodo T) {
-	        enumerate(G,T);
-	    }
+	public void AllPaths(Nodo G, Nodo T) {
+		enumerate(G, T);
+	}
 
-	    // use DFS
-	    public void enumerate(Nodo G, Nodo T) {
+	public void enumerate(Nodo G, Nodo T) {
 
-	        path.push(G.name);
-	        onPath.add(G.name);
+		path.push(G.name);
+		onPath.add(G.name);
 
-	        if (G.name.equals(T.name))
-	            System.out.println(path);
+		if (G.name.equals(T.name))
+			System.out.println(path);
 
-	        else {
-	            for (Arista w : G.adjacente) {
-	                if (!onPath.contains(w.destiny.name)) enumerate(w.destiny,T);
-	            }
-	        }
+		else {
+			for (Arista w : G.adjacente) {
+				if (!onPath.contains(w.destiny.name))
+					enumerate(w.destiny, T);
+			}
+		}
 
-	        path.pop();
-	        onPath.remove(G.name);
-	    }
-	
-	
+		path.pop();
+		onPath.remove(G.name);
+	}
+
 	public void BFS() {
 		Nodo start = null;
 		Nodo end = null;
 		String startName = "";
 		String destino = "";
-		
+
 		clearAll();
-		
-		while(start == null || end == null) {
+
+		while (start == null || end == null) {
 			System.out.println("Ingrese primer nodo");
 			startName = sc.nextLine();
 			System.out.println("Ingrese segundo nodo");
 			destino = sc.nextLine();
 			start = NodoMap.get(startName);
 			end = NodoMap.get(destino);
-			if(start == null || end == null) {
-				 System.out.println("Ingrese nodos existentes porfavor!");
-				 
+			if (start == null || end == null) {
+				System.out.println("Ingrese nodos existentes porfavor!");
+
 			}
 		}
-		
 
-		
 		Queue<Nodo> q = new LinkedList<Nodo>();
 		q.add(start);
 		start.dist = 0;
@@ -189,7 +185,6 @@ public class Grafo {
 			e.getValue().dist = -1;
 		}
 	}
-
 
 	public void addArista(String nomOri, String nomDest, int cost) {
 		Nodo v = getNodo(nomOri);
